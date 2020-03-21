@@ -60,8 +60,10 @@ def get_next_pass_time():
     lat = location[1]
 
     # returns information about next pass time.
+    payload = {"lat": lat, "lon": lon, "n": 1}
     r = requests.get(
-        f'http://api.open-notify.org/iss-pass.json?lat={lat}&lon={lon}&n=1')
+        'http://api.open-notify.org/iss-pass.json', params=payload)
+    # f'http://api.open-notify.org/iss-pass.json?lat={lat}&lon={lon}&n=1')
     r = r.json()
     risetime = r['response'][0]['risetime']
 
